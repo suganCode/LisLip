@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login page</title>
+    <link rel="icon" href="image/apple.svg" type="image">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+    body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 90vh;
+          }
+        
+        .form-container {
+              height: 450px;
+             }
+   
+    
+                
+@media only screen and (max-width: 450px) {
+  
+
+.form-container > div > h1 {
+        margin-bottom:40px;
+        }
+  
+.form-container >.register_row{margin-top:13px}
+    
+    </style>
+
+   <script src="jquery.js" ></script>
+
+</head>
+
+<noscript>Please enable JavaScript to run this page</noscript>
+
+<body>
+
+    <div>
+
+        <div class="headline"> 
+           <b name="login_message"></b>
+        </div>
+
+        <form class='form-container'id='sign_id' autocomplete="off" action="server.php" method="post">
+
+            <div class="header">
+                <h1>Sign in to your account</h1>
+            </div>
+
+            <div >
+                <input type='email' name="email" placeholder="Email"  required  />
+                <br><br>
+                <input type='password'  name="password" placeholder="Password"  pattern=".{6,}" title="Password should be at least 6 characters long"  required />
+                <div class="password-hint">Password should be at least 6 characters long</div>
+            </div> 
+
+                <a class="reset_link" style="margin-left:400px;font-weight: bold;font-family:Georgia,'Times New Roman', Times, serif;width:300px;" href="#">Forgot Password</a>
+
+            <div>
+                <button  class="loginbut" name="login" style="margin-top:10px;color:white;" onclick="submitForm()">
+                    SIGN IN
+                </button>
+            </div>
+
+            <div class='register_row' >
+                <b style="font-family: Georgia, 'Times New Roman', Times, serif;" >Don't have any account? <a href="register.html">Register</a></b>
+            </div>
+
+        </form> 
+
+    </div>
+
+
+</body>
+</html>
+

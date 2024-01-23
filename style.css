@@ -1,0 +1,126 @@
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+     }
+
+.form-container > div > input,
+button {
+border: 1px solid #ccc;
+padding: 15px;
+width: 350px;
+border-radius: 5px;
+font-size: medium;
+color: rgb(107, 102, 102);
+}
+
+button{
+width:310px;
+}
+
+.form-container > div > input:focus,
+button:focus {
+outline: none;
+border: 1px solid #ccc;
+box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.form-container.submitted > div > input:invalid {
+ box-shadow: 0 0 5px red;
+ }
+
+.form-container.submitted > div > input:required:valid {
+border: 1px solid #ccc;
+}
+
+.form-container > div > h1 {
+font-size: 32px;
+font-weight: bolder;
+font-family: Verdana, Geneva, Tahoma;
+}
+
+.loginbut {
+background-color: rgb(26, 166, 112);
+font-weight: bolder;
+color: white;
+}
+
+.loginbut:hover {
+background-color: rgb(16, 145, 145);
+}
+
+a {
+color: rgb(19, 19, 216)
+}
+
+a:hover {
+color: rgb(16, 145, 145);
+}
+
+.headline{
+font-style: italic;text-align: center;font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.password-hint {
+color: #888;
+font-size: 14px;
+margin-top: 10px;
+margin-left:10px;
+}
+
+h1{color:red}
+
+a {
+text-decoration: none;
+}
+
+
+@media only screen and (max-width: 450px) {
+
+body{
+background-color:white;
+margin-left:0px 5px 0px 5px;
+
+}
+
+.form-container div.forgot{color:#888}
+
+.form-container div b.reset_link {
+color: rgb(38, 46, 38);
+}
+
+.form-container > div > input,button{
+    padding: 13px;
+    width: 280px;
+
+}
+
+.form-container > div > h1 {
+font-size: 28px;
+font-weight: bolder;
+font-family: Verdana, Geneva, Tahoma;
+} 
+
+a.reset_link{
+margin-right:100px;
+}  
+
+#sign_id{
+height:400px;
+}
+
+
+#register_id{       
+   height:550px;
+}
+
+.form-container > div > input:focus {
+box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
+}

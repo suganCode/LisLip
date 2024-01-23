@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="icon" href="image/apple.svg" type="image">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>        
+
+        .form-container {
+           height: 600px;
+         }
+ 
+    </style>
+
+</head>
+
+<noscript>Please enable JavaScript to run this page</noscript>
+
+<script src="jquery.js" ></script>
+
+<body>
+
+    <div >
+        
+        <div class="headline" style="margin-top:50px;" > 
+            <b name="response_message" ></b>
+         </div>
+
+        <form class='form-container' id='register_id'  action="server.php" autocomplete="off" method="post" >
+
+            <div class="header"> 
+                <h1>Create an Account</h1>
+            </div>
+
+            <div >
+                <input type='text' name="Username" placeholder="Your Name"   required />
+            </div>
+
+            <div>
+
+                <input type='email' name="Email" placeholder="Email" required />
+
+            </div>
+
+            <div>
+
+                <input type='password'  name="Password" placeholder="Password"  pattern=".{6,}" title="Password should be at least 6 characters long" required/>
+
+                <div class="password-hint"  >Password should be at least 6 characters long</div>
+
+            </div>
+
+            <div>
+
+                <input type="text" id="mobileNumber" name="Mobilenumber" pattern="[789]\d{9}" title="Enter a 10 digit mobile nubmer" placeholder="Phone number"   required />
+
+            </div>
+           
+            <div class="three">
+                <button name="register" class="loginbut" style="margin-top:10px;color:white;" onclick="submitForm()" > SIGN UP </button> 
+            </div> 
+
+            <div>
+                <b >Do you have an account? <a  href="Login.html"  >Let's login</a></b>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+
+<script>
+
+function submitForm() {
+        document.querySelector('.form-container').classList.add('submitted');
+    }
+     
+if('jsonData' in window){
+
+const { name,email, password,phone,response_message ,inputBorder} = jsonData;
+
+$('[name="Username"]').val(name);
+$('[name="Email"]').val(email);
+$('[name="Password"]').val(password);
+$('[name="Mobilenumber"]').val(phone);
+
+$('[name="response_message"]').text(response_message);
+
+$(document).ready(function() {
+
+$('input').css({
+    'border':inputBorder      
+ });
+
+$('input').focus(function () {
+            $(this).css({
+                'border': '1px solid #ccc'
+            });
+ });
+
+});
+
+}
+
+</script>
+
+</html>
