@@ -240,7 +240,7 @@ td:before {
             </div>
         </div>
 
-    <div class="block">
+    <div style="color:rgb(223, 219, 219)" class="block">
 
         <p class="title">Total registered Users</p>
          <div class="container">
@@ -270,7 +270,7 @@ td:before {
         data: { users: 1 },
         success: res => {
             var container = res.split('#');
-            container.pop(); // to remove empty string in json data 
+            container.pop(); 
             try {
             
                    container.map(val => {
