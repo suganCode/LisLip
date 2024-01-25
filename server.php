@@ -24,7 +24,7 @@ if(isset($_POST['register'])){
           }else {
      
                   $stmt = $conn->prepare("SELECT * FROM register WHERE email = ?");
-                  $stmt->bind_param("s",$_SESSION['formData']['email']); // Assuming user_id is an integer; adjust "i" accordingly for other data types
+                  $stmt->bind_param("s",$_SESSION['formData']['email']); 
                   $stmt->execute();
     
                   $result = $stmt->get_result();
