@@ -115,12 +115,18 @@ height:400px;
 
 
 #register_id{       
-   height:550px;
+   height:510px;
 }
 
 .form-container > div > input:focus {
 box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
 }
+
+.form-container > div > input{
+        border: 1px solid rgb(223, 219, 219);
+      
+       }
+
 
 
 }
