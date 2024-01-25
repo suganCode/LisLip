@@ -13,21 +13,20 @@ if(isset($_POST['register'])){
   
     if( !validateForm($data) && validateEmail($data['email']) && 6<=strlen($data['password']) && validateMobile($data['phone'])){
   
-      $_SESSION['formData']=$data; 
+      $_SESSION['formData']=$data;  
        
       try{
      
         $conn = new mysqli("localhost", "id21666659_sugan", "Sugansugan28###", "id21666659_database1");
   
-
          if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
           }else {
      
                   $stmt = $conn->prepare("SELECT * FROM register WHERE email = ?");
-                  $stmt->bind_param("s",$_SESSION['formData']['email']);
+                  $stmt->bind_param("s",$_SESSION['formData']['email']); // Assuming user_id is an integer; adjust "i" accordingly for other data types
                   $stmt->execute();
-
+    
                   $result = $stmt->get_result();
      
                   if($result->num_rows){  
@@ -38,7 +37,7 @@ if(isset($_POST['register'])){
      
                         $resultFromServer=json_encode(['email'=>"",'password'=>"",'response_message'=>$msg,'inputBorder'=>$inputBorder]);
        
-                        $htmlContent = file_get_contents('Login.html'); 
+                        $htmlContent = file_get_contents('Login.html'); //proceed to login page (index.html)
                         echo "<script>var jsonData = " . $resultFromServer . ";</script>";
                         echo $htmlContent;
        
@@ -46,13 +45,13 @@ if(isset($_POST['register'])){
 
                     insertDataIntoDatabase();
                   }
-    
+       
                   $stmt->close();  
-                  $conn->close(); 
+                  $conn->close();  
   
           } 
        
-      }catch(exception $e){ //if any execption occurs, catch that exception and again return register.html with entered details
+      }catch(exception $e){ 
         
             $data['response_message'] ='Internal server problem';
             $data['inputBorder'] ="1px solid #ccc";
@@ -67,7 +66,7 @@ if(isset($_POST['register'])){
             }
   
             if (isset($conn)) {
-               $conn->close();
+               $conn->close(); 
             }
   
       }
@@ -87,10 +86,9 @@ if(isset($_POST['register'])){
           }
   
   
-  }  
+  } 
   
-  
-//block for login process
+
 if(isset($_POST['login'])){
 
     $email=$_POST['email'];
@@ -101,28 +99,30 @@ if(isset($_POST['login'])){
         try{
 
             $conn = new mysqli("localhost", "id21666659_sugan", "Sugansugan28###", "id21666659_database1");
-              if ($conn->connect_error) {
+  
+            if ($conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             } else {
 
                 $stmt = $conn->prepare("SELECT pass FROM register WHERE email = ? ");
                 $stmt->bind_param("s",$email); 
+
                 $stmt->execute();
+
                 $stmt->bind_result($hashedPassword);
                 $stmt->fetch();
 
-                
                 if($hashedPassword){
+
                     if (password_verify($password, $hashedPassword)) {  
   
-                          $_SESSION['email']=$email;
-                    
+                          $_SESSION['email']=$email;  
+
                           $htmlContent = file_get_contents('profile.html'); 
                           echo "<script>var data = '" . htmlspecialchars($_SESSION['email'], ENT_QUOTES, 'UTF-8') . "';</script>";
                           echo $htmlContent;
 
                     } else {  
-
 
                             $msg= 'Incorrect email or password';
                             $inputBorder="1px solid red";
@@ -136,7 +136,6 @@ if(isset($_POST['login'])){
 
                 }else{ 
 
-                    //User not yet registered 
                     $msg= 'The email has not been registered yet';
 
                     $inputBorder="1px solid red";
@@ -151,7 +150,6 @@ if(isset($_POST['login'])){
 
                 $stmt->close();  
                 $conn->close(); 
-
               }
   
         }catch(exception $e){
@@ -168,7 +166,7 @@ if(isset($_POST['login'])){
               if (isset($stmt)) {
                  $stmt->close(); 
               }
-
+              
               if (isset($conn)) {
                  $conn->close(); 
               }
@@ -194,6 +192,7 @@ if (isset($_GET['users'])) {
 
     $conn = new mysqli("localhost", "id21666659_sugan", "Sugansugan28###", "id21666659_database1");
 
+    //fetching data from userinfo table on 000webhost.com (free webost service with database connection) 
     $sql="SELECT * FROM register";
 
     $result = mysqli_query($conn,$sql);
@@ -211,7 +210,7 @@ if (isset($_GET['users'])) {
                       'email'=>$row['email'],
                       'mobile'=>$row['mobile'],
                      ));
-                     echo "#";  //for parsing purpose
+                     echo "#";  //for parsing the data in front-end
           }
          
     }else{  
@@ -221,7 +220,7 @@ if (isset($_GET['users'])) {
     }
 
     $result->close();  
-    $conn->close(); 
+    $conn->close();
 
 
 }
@@ -257,9 +256,7 @@ if(isset($_POST['logout'])){
   
   
   function validateEmail($email) {
-
           $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-
           return filter_var($email, FILTER_VALIDATE_EMAIL)?true:false;
   }
   
@@ -275,13 +272,14 @@ if(isset($_POST['logout'])){
   
 function insertDataIntoDatabase(){
 
-    $data=$_SESSION['formData'];
+    $data=$_SESSION['formData'];  
 
     $hashedPassword =encrypt($data['password']);
 
     try{
 
       $conn = new mysqli("localhost", "id21666659_sugan", "Sugansugan28###", "id21666659_database1");
+
 
         if ($conn->connect_error) {
               die("Connection failed: " . $conn->connect_error);
@@ -290,7 +288,6 @@ function insertDataIntoDatabase(){
               $stmt = $conn->prepare("INSERT INTO register (name,email,pass,mobile) VALUES (?,?,?,?)");
               $stmt->bind_param("ssss",$data['name'],$data['email'],$hashedPassword,$data['phone']);
 
-    
               if ($stmt->execute()) { 
 
                         $msg= "Successfully registered let's login";
@@ -316,8 +313,8 @@ function insertDataIntoDatabase(){
 
               }
 
-              $stmt->close();  
-              $conn->close(); 
+              $stmt->close(); 
+              $conn->close();  
 
         }
 
@@ -333,9 +330,9 @@ function insertDataIntoDatabase(){
 
         
         if (isset($stmt)) {
-           $stmt->close();
+           $stmt->close(); 
         }
-    
+        
         if (isset($conn)) {
            $conn->close(); 
          }
@@ -343,7 +340,6 @@ function insertDataIntoDatabase(){
     }
 
 }
-
 
 
 ?>
