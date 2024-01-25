@@ -37,7 +37,7 @@ if(isset($_POST['register'])){
      
                         $resultFromServer=json_encode(['email'=>"",'password'=>"",'response_message'=>$msg,'inputBorder'=>$inputBorder]);
        
-                        $htmlContent = file_get_contents('Login.html'); //proceed to login page (index.html)
+                        $htmlContent = file_get_contents('Login.html'); 
                         echo "<script>var jsonData = " . $resultFromServer . ";</script>";
                         echo $htmlContent;
        
