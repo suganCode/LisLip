@@ -33,7 +33,9 @@
         }
   
 .form-container >.register_row{margin-top:13px}
-    
+
+    }
+
     </style>
 
    <script src="jquery.js" ></script>
@@ -82,4 +84,38 @@
 
 </body>
 </html>
+<script>
 
+    function submitForm() {
+            document.querySelector('.form-container').classList.add('submitted');
+        }
+    
+    if('jsonData' in window){
+
+    const { email, password, response_message ,inputBorder} = jsonData;
+
+    $('[name="email"]').val(email);
+    $('[name="password"]').val(password);
+
+    $('[name="login_message"]').text(response_message);
+
+    $(document).ready(function() {
+
+    $('input').css({ 
+        'border':inputBorder,    
+        'width': '304px'
+  
+    });
+
+    $('input').focus(function () {
+                $(this).css({
+                    'border': '1px solid #ccc'
+                });
+     });
+
+
+    });
+
+    }
+
+</script>
