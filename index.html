@@ -96,7 +96,7 @@ const container = document.getElementById("carouselImages");
 
         container.innerHTML = images.map(img => `<img src="${img}" alt="Image">`).join("");
 
-        container.style.animation = `scrollImages ${90}s linear infinite`; // Adjust the duration as needed
+        container.style.animation = `scrollImages ${90}s linear infinite`;
 
         $('.login').click(()=>window.location.href="Login.html");
         $('.signup').click(()=>window.location.href="register.html")
