@@ -316,57 +316,27 @@ button.signup img{
 
 }
 
-
 @media only screen and (max-width: 710px) {
 
-    .box >div>img.flag_icon{display: none;}
 
-    .box >div>button.signup{display: none;}
+.box >div>button{
+        font-size:15px;
+        margin-right: 2px;
+  }
 
-    .box >div>img.menu_bar{display:block;}
+.box >div>img.flag_icon{display: none;}
 
-    .container{background-image: none;height:400px;}
+.box >div>button.signup{display: none;}
 
-    .root{
+.box >div>img.menu_bar{display:block;}
+
+.container{background-image: none;height:400px;}
+
+
+   .root{
         margin-left:10px;
         margin-right:10px;
     }
-        
-.line1,.line2{
-    font-size: 30px;
-    margin-bottom:20px;
-           }
-
-.header{
-    background-color: whitesmoke;
-    }
-.container{
-    background-color: white;
-    height: 350px;
-      }
-
-.line>button{
-    width:120px;
-       }
-
-.box >div>button{
-         font-size:15px;
-       }
-
-.box >div>button{
-       margin-right: 2px;
-       }
-
-.line>button{
-      justify-content: space-between;
-      width:100px;
-      font-size:14px;
-      height:43px;
-         }
-
-}
-
-@media only screen and (max-width: 710px) {
 
 body{background-color:#02042b;}
 
@@ -384,14 +354,12 @@ body{background-color:#02042b;}
 
 .title{ color:white}
 
-.line1,.line2{
-    font-size:25px;
-     }
 
 .line>button{
            width:95px;
            font-size:15px;
            height:43px;
+           justify-content: space-between;
           }
 
 
@@ -411,7 +379,8 @@ body{background-color:#02042b;}
 
 .line1,.line2{
       color:white;
-     font-size: 30px;
+     font-size: 25px;
+     margin-bottom:20px;
 
     }
     
